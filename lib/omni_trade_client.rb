@@ -1,0 +1,5 @@
+require_relative 'omni_trade_api/core_ext'
+require_relative 'omni_trade_api/config'
+require_relative 'omni_trade_api/auth'
+require_relative 'omni_trade_api/client'
+require_relative 'omni_trade_api/streaming_client'
