@@ -1,8 +1,6 @@
 module OmniTradeAPI 
   describe Object do
-
     describe '#to_param' do
-
       it 'parses the object into a String' do
         expect(described_class.to_param).to be_a(String)
       end
@@ -18,9 +16,7 @@ module OmniTradeAPI
   end
 
   describe NilClass do
-
     describe 'to_param' do
-
       it 'returns itself as a string' do
         expect(described_class.to_param).to eq(described_class.to_s)
       end
@@ -28,9 +24,7 @@ module OmniTradeAPI
   end
 
   describe TrueClass do
-
     describe 'to_param' do
-
       it 'returns itself as a string' do
         expect(described_class.to_param).to eq(described_class.to_s)
       end
@@ -38,9 +32,7 @@ module OmniTradeAPI
   end
 
   describe FalseClass do
-
     describe 'to_param' do
-
       it 'returns itself as a string' do
         expect(described_class.to_param).to eq(described_class.to_s)
       end
@@ -73,6 +65,7 @@ module OmniTradeAPI
     let(:hash) { { key1: 'value1', key2: 'value2' } }
 
     describe '#to_query(key)' do
+
       let(:key) { 'key' }
 
       it 'parses the given Hash into a query String with a key' do

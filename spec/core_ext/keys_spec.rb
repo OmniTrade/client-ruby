@@ -21,10 +21,9 @@ module OmniTradeAPI
 
       context 'if a block is given' do
         it 'parses the keys the given block' do
-          expect(hash.transform_keys do [] end.keys.first).to be_a(Array)
+          expect(hash.transform_keys { [] }.keys.first).to be_a(Array)
         end
       end
-
     end
   end
 end
