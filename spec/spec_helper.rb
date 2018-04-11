@@ -1,2 +1,2 @@
-require 'omni_trade_client'
+require 'omnitrade_client'
 require 'webmock/rspec'

@@ -1,9 +1,9 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-require "omni_trade_api/client/version"
+require "omnitrade_api/client/version"
 
 Gem::Specification.new do |s|
-  s.name        = "omni_trade_client"
+  s.name        = "omnitrade_client"
   s.version     = OmniTradeAPI::Client::VERSION
   s.authors     = ["OmniTrade"]
   s.email       = ["contact@omnitrade.io"]

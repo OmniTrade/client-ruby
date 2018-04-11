@@ -1,15 +1,15 @@
 # OmniTrade API Ruby Client
 
-**omni\_trade_client** is an open-source Ruby gem that integrates the **[OmniTrade](https://omnitrade.io/)** API.
+**omnitrade_client** is an open-source Ruby gem that integrates the **[OmniTrade](https://omnitrade.io/)** API.
 
 You can read the API documentation by visiting **<https://omnitrade.io/documents/api_v2>**
 
 ## Installation
 
-Add `omni_trade_client` to your `Gemfile`.
+Add `omnitrade_client` to your `Gemfile`.
 
 ```ruby
-gem 'omni_trade_client', git: 'git:https://github.com/OmniTrade/client-ruby.git'
+gem 'omnitrade_client', github: 'OmniTrade/client-ruby'
 ```
 
 Install by running:
@@ -23,7 +23,7 @@ bundle install
 Require the client in your code by adding:
 
 ```ruby
-require 'omni_trade_client'
+require 'omnitrade_client'
 ```
 
 You can use both the public or private API.
@@ -78,6 +78,6 @@ private_client.post '/api/v2/order', market: 'btcbrl', side: 'buy', volume: '0.4
 
 OmniTrade (C) All Rights Reserved.
 
-`omni_trade_client` is released under Apache License 2.0.
+`omnitrade_client` is released under Apache License 2.0.
 
 
