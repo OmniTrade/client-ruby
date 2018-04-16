@@ -58,9 +58,7 @@ module OmniTradeAPI
     end
 
     def parse(response)
-      JSON.parse response.body
-    rescue JSON::ParserError
-      {http_error: {code: response.code, body: response.body}}
+      response.code == '200' ? JSON.parse(response.body) : raise_error(response)
     end
 
     def setup_auth_keys(options)
@@ -75,6 +73,18 @@ module OmniTradeAPI
 
     def check_auth!
       raise ArgumentError, 'Missing access key and/or secret key' if @auth.nil?
+    end
+
+    def raise_error(response)
+      if response.body['error'].nil?
+        code = response.code
+        message = response.message
+      else
+        api_error = JSON.parse(response.body)['error']
+        code = api_error['code']
+        message = api_error['message']
+      end
+      raise Net::HTTPBadResponse, code, message
     end
   end
 end
