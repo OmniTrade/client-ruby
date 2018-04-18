@@ -16,24 +16,32 @@ module OmniTradeAPI
             .to_return(status: 200, body: markets.to_json, headers: {})
         end
 
-        it 'makes a valid request' do
-          expect(public_client.get_public markets_path).to_not include(:http_error)
-        end
-
         it 'returns the markets' do
           expect(public_client.get_public markets_path).to eq(markets)
         end
       end
 
-      context 'with invalid request' do
+      context 'with http error' do
         before(:example) do
           stub_request(:get, "#{omnitrade_url}/#{markets_path}")
             .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
             .to_return(status: 404, body: "invalid request", headers: {})
         end
 
-        it 'returns a http_error' do
-          expect(public_client.get_public markets_path).to include(:http_error)
+        it 'raises an error' do
+          expect { public_client.get_public markets_path }.to raise_error(Net::HTTPBadResponse)
+        end
+      end
+
+      context 'with API error' do
+        before(:example) do
+          stub_request(:get, "#{omnitrade_url}/#{markets_path}")
+            .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
+            .to_return(status: 401, body: '{"error":{"code":42,"message":"The tonce is invalid."}}', headers: {})
+        end
+
+        it 'raises an error' do
+          expect { public_client.get_public markets_path }.to raise_error(Net::HTTPBadResponse)
         end
       end
     end
@@ -72,24 +80,32 @@ module OmniTradeAPI
             .to_return(status: 200, body: orders.to_json, headers: {})
         end
 
-        it 'makes a valid request' do
-          expect(private_client.get orders_path, attributes).to_not include(:http_error)
-        end
-
         it 'returns the orders' do
           expect(private_client.get orders_path, attributes).to eq(orders)
         end
       end
 
-      context 'with invalid request' do
+      context 'with http error' do
         before(:example) do
           stub_request(:get, "#{omnitrade_url}/#{orders_path}#{data}")
             .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
             .to_return(status: 404, body: 'invalid request', headers: {})
         end
 
-        it 'returns a http_error' do
-          expect(private_client.get orders_path, attributes).to include(:http_error)
+        it 'raises an error' do
+          expect { private_client.get orders_path, attributes }.to raise_error(Net::HTTPBadResponse)
+        end
+      end
+
+      context 'with API error' do
+        before(:example) do
+          stub_request(:get, "#{omnitrade_url}/#{orders_path}#{data}")
+            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .to_return(status: 42, body: '{"error":{"code":42,"message":"The tonce is invalid."}}', headers: {})
+        end
+
+        it 'raises an error' do
+          expect { private_client.get orders_path, attributes }.to raise_error(Net::HTTPBadResponse)
         end
       end
     end
@@ -122,24 +138,32 @@ module OmniTradeAPI
             .to_return(status: 200, body: order.to_json, headers: {})
         end
 
-        it 'makes a valid post' do
-          expect(private_client.post orders_path, attributes).to_not include(:http_error)
-        end
-
         it 'returns the posted orders' do
           expect(private_client.post orders_path, attributes).to eq(order)
         end
       end
 
-      context 'with invalid request' do
+      context 'with http error' do
         before(:example) do
           stub_request(:post, "#{omnitrade_url}#{orders_path}")
             .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
             .to_return(status: 404, body: 'invalid request', headers: {})
         end
 
-        it 'returns a http_error' do
-          expect(private_client.post orders_path, attributes).to include(:http_error)
+        it 'raises an error' do
+          expect { private_client.post orders_path, attributes }.to raise_error(Net::HTTPBadResponse)
+        end
+      end
+
+      context 'with API error' do
+        before(:example) do
+          stub_request(:post, "#{omnitrade_url}#{orders_path}")
+            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .to_return(status: 42, body: '{"error":{"code":42,"message":"The tonce is invalid."}}', headers: {})
+        end
+
+        it 'raises an error' do
+          expect { private_client.post orders_path, attributes }.to raise_error(Net::HTTPBadResponse)
         end
       end
     end
