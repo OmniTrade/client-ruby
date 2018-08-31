@@ -1,5 +1,6 @@
 require 'json'
 require 'net/http'
+require 'openssl'
 require_relative 'client/version'
 
 module OmniTradeAPI
