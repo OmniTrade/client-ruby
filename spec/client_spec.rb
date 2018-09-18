@@ -135,7 +135,7 @@ module OmniTradeAPI
         before(:example) do
           stub_request(:post, "#{omnitrade_url}#{orders_path}")
             .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
-            .to_return(status: 200, body: order.to_json, headers: {})
+            .to_return(status: 201, body: order.to_json, headers: {})
         end
 
         it 'returns the posted orders' do

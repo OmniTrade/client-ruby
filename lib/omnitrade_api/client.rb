@@ -59,7 +59,11 @@ module OmniTradeAPI
     end
 
     def parse(response)
-      response.code == '200' ? JSON.parse(response.body) : raise_error(response)
+      if response.code == '200' || response.code == '201'
+        JSON.parse(response.body)
+      else
+        raise_error(response)
+      end
     end
 
     def setup_auth_keys(options)
