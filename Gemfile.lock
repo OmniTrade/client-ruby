@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omnitrade_client (0.0.2)
+    omnitrade_client (0.0.1)
       faye-websocket (~> 0.9.2)
 
 GEM

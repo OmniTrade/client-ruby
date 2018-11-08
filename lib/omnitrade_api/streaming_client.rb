@@ -8,7 +8,7 @@ module OmniTradeAPI
 
     def initialize(options={})
       super
-      @endpoint = options[:endpoint] || 'wss://omnitrade.io:8080'
+      @endpoint = options[:endpoint] || 'wss://omnitrade.com:8080'
       @logger   = options[:logger] || Logger.new(STDOUT)
     end
 
