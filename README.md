@@ -74,28 +74,10 @@ Use **`.post`** to make a POST request to an URL, you can also set the required 
 private_client.post '/api/v2/order', market: 'btcbrl', side: 'buy', volume: '0.42', price: '4200.0'
 ```
 
-## WebSocket API
-
-You can also make use of the **[OmniTrade WebSocket API](https://omnitrade.io/documents/websocket_api)**:
-
-```ruby
-require 'omnitrade_client'
-
-streaming_client = OmniTradeAPI::StreamingClient.new access_key: 'your_access_key', secret_key: 'your_secret_key'
-```
-
-## Usage
-
-```ruby
-  streaming_client = OmniTradeAPI::StreamingClient.new access_key: 'your_access_key', secret_key: 'your_secret_key'
-
-  client.run do |message|
-    # use the message as desired
-  end
-```
-
 ## Licence
 
 OmniTrade (C) All Rights Reserved.
 
 `omnitrade_client` is released under Apache License 2.0.
+
+
