@@ -1,5 +1,7 @@
 # OmniTrade API Ruby Client
 
+[![Build Status](https://travis-ci.com/OmniTrade/client-ruby.svg?branch=master)](https://travis-ci.com/OmniTrade/client-ruby)
+
 **omnitrade_client** is an open-source Ruby gem that integrates the **[OmniTrade](https://omnitrade.io/)** API.
 
 You can read the API documentation by visiting **<https://omnitrade.io/documents/api_v2>**
