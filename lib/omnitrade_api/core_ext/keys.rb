@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 unless {}.respond_to? :symbolize_keys
   class Hash
     def transform_keys
       return enum_for(:transform_keys) unless block_given?
+
       result = self.class.new
       each_key do |key|
         result[yield(key)] = self[key]
@@ -10,7 +13,7 @@ unless {}.respond_to? :symbolize_keys
     end
 
     def symbolize_keys
-      transform_keys{ |key| key.to_sym rescue key }
+      transform_keys { |key| key.to_sym rescue key }
     end
   end
 end

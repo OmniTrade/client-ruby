@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'logger'
 require 'json'
 require 'eventmachine'
@@ -5,8 +7,7 @@ require 'faye/websocket'
 
 module OmniTradeAPI
   class StreamingClient < Client
-
-    def initialize(options={})
+    def initialize(options = {})
       super
       @endpoint = options[:endpoint] || 'wss://omnitrade.com:8080'
       @logger   = options[:logger] || Logger.new(STDOUT)
@@ -16,7 +17,7 @@ module OmniTradeAPI
       EM.run do
         ws = Faye::WebSocket::Client.new(@endpoint)
 
-        ws.on(:open) do |event|
+        ws.on(:open) do
           @logger.info "Connected."
         end
 
@@ -43,10 +44,7 @@ module OmniTradeAPI
           ws = nil
           EM.stop
         end
-
       end
-
     end
-
   end
 end

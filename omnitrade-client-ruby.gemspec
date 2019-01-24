@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $:.push File.expand_path("../lib", __FILE__)
 
 require "omnitrade_api/client/version"
@@ -13,7 +15,7 @@ Gem::Specification.new do |s|
   s.license     = 'Apache License 2.0'
 
   s.require_paths = ["lib"]
-  s.files       = Dir["{bin,lib}/**/*"] + ["README.md"]
+  s.files = Dir["{bin,lib}/**/*"] + ["README.md"]
 
   s.add_runtime_dependency 'faye-websocket', '~> 0.9.2'
   s.add_development_dependency 'rspec', '~> 3.7.0'
