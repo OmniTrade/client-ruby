@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 require 'net/http'
 require 'openssl'
@@ -5,17 +7,16 @@ require_relative 'client/version'
 
 module OmniTradeAPI
   class Client
+    attr_reader :auth
 
-    attr :auth
-
-    def initialize(options={})
+    def initialize(options = {})
       options = options.symbolize_keys
       setup_auth_keys options
       @endpoint = options[:endpoint] || 'https://omnitrade.io/'
       @timeout  = options[:timeout]  || 60
     end
 
-    def get_public(path, params={})
+    def get_public(path, params = {})
       uri = URI("#{@endpoint}#{path}")
       uri.query = URI.encode_www_form params
 
@@ -24,7 +25,7 @@ module OmniTradeAPI
       end
     end
 
-    def get(path, params={})
+    def get(path, params = {})
       check_auth!
 
       uri = URI("#{@endpoint}#{path}")
@@ -35,7 +36,7 @@ module OmniTradeAPI
       end
     end
 
-    def post(path, params={})
+    def post(path, params = {})
       check_auth!
 
       request(:post, path, @auth, params) do |http, signed_params|
@@ -45,7 +46,7 @@ module OmniTradeAPI
 
     private
 
-    def request(action, path, auth, params={})
+    def request(action, path, auth, params = {})
       uri = URI("#{@endpoint}#{path}")
       params = auth.signed_params action.to_s.upcase, path, params if auth
 

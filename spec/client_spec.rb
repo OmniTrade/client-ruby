@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-module OmniTradeAPI 
+module OmniTradeAPI
   describe Client do
     let(:omnitrade_url) { 'https://omnitrade.io' }
 
     describe '#get_public' do
       let(:public_client) { described_class.new }
       let(:markets_path) { '/api/v2/markets' }
-      let(:markets) { [{"id"=>"btcbrl", "name"=>"BTC/BRL"}, {"id"=>"ltcbtc", "name"=>"LTC/BTC"}] }
+      let(:markets) { [{ "id" => "btcbrl", "name" => "BTC/BRL" }, { "id" => "ltcbtc", "name" => "LTC/BTC" }] }
 
       context 'with valid request' do
         before(:example) do
@@ -53,12 +55,12 @@ module OmniTradeAPI
       let(:orders_path) { '/api/v2/orders' }
       let(:signature) { 'd0b413205a962ffb6dcba32d91367dfe5c10c7e8cba990b1621aeb178668707d' }
       let(:orders) {
-        [{"id"=>42,"side"=>"sell","ord_type"=>"limit","price"=>"10.0","avg_price"=>"0.0",
-        "state"=>"wait","market"=>"btcbrl","created_at"=>"2018-04-05T13=>34=>57-03=>00",
-        "volume"=>"1.0","remaining_volume"=>"1.0","executed_volume"=>"0.0","trades_count"=>0},
-        {"id"=>43,"side"=>"sell","ord_type"=>"limit","price"=>"10.0","avg_price"=>"0.0",
-        "state"=>"wait","market"=>"btcbrl","created_at"=>"2018-04-05T13=>37=>57-03=>00",
-        "volume"=>"1.0","remaining_volume"=>"1.0","executed_volume"=>"0.0","trades_count"=>0}]
+        [{ "id" => 42,"side" => "sell","ord_type" => "limit","price" => "10.0","avg_price" => "0.0",
+        "state" => "wait","market" => "btcbrl","created_at" => "2018-04-05T13=>34=>57-03=>00",
+        "volume" => "1.0","remaining_volume" => "1.0","executed_volume" => "0.0","trades_count" => 0 },
+        { "id" => 43,"side" => "sell","ord_type" => "limit","price" => "10.0","avg_price" => "0.0",
+        "state" => "wait","market" => "btcbrl","created_at" => "2018-04-05T13=>37=>57-03=>00",
+        "volume" => "1.0","remaining_volume" => "1.0","executed_volume" => "0.0","trades_count" => 0 }]
       }
 
       let(:attributes) do
@@ -76,7 +78,7 @@ module OmniTradeAPI
       context 'with valid orders request' do
         before(:example) do
           stub_request(:get, "#{omnitrade_url}/#{orders_path}#{data}")
-            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
             .to_return(status: 200, body: orders.to_json, headers: {})
         end
 
@@ -88,7 +90,7 @@ module OmniTradeAPI
       context 'with http error' do
         before(:example) do
           stub_request(:get, "#{omnitrade_url}/#{orders_path}#{data}")
-            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
             .to_return(status: 404, body: 'invalid request', headers: {})
         end
 
@@ -100,7 +102,7 @@ module OmniTradeAPI
       context 'with API error' do
         before(:example) do
           stub_request(:get, "#{omnitrade_url}/#{orders_path}#{data}")
-            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
             .to_return(status: 42, body: '{"error":{"code":42,"message":"The tonce is invalid."}}', headers: {})
         end
 
@@ -114,11 +116,11 @@ module OmniTradeAPI
       let(:private_client) { described_class.new access_key: access_key, secret_key: secret_key }
       let(:orders_path) { '/api/v2/orders' }
       let(:access_key) { '123456' }
-      let(:secret_key) { '123456' }   
+      let(:secret_key) { '123456' }
       let(:order) {
-        {"id"=>42,"side"=>"sell","ord_type"=>"limit","price"=>"10.0","avg_price"=>"0.0",
-        "state"=>"wait","market"=>"btcbrl","created_at"=>"2018-04-05T13=>34=>57-03=>00",
-        "volume"=>"1.0","remaining_volume"=>"1.0","executed_volume"=>"0.0","trades_count"=>0}
+        { "id" => 42,"side" => "sell","ord_type" => "limit","price" => "10.0","avg_price" => "0.0",
+        "state" => "wait","market" => "btcbrl","created_at" => "2018-04-05T13=>34=>57-03=>00",
+        "volume" => "1.0","remaining_volume" => "1.0","executed_volume" => "0.0","trades_count" => 0 }
       }
 
       let(:attributes) do
@@ -146,7 +148,7 @@ module OmniTradeAPI
       context 'with http error' do
         before(:example) do
           stub_request(:post, "#{omnitrade_url}#{orders_path}")
-            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
             .to_return(status: 404, body: 'invalid request', headers: {})
         end
 
@@ -158,7 +160,7 @@ module OmniTradeAPI
       context 'with API error' do
         before(:example) do
           stub_request(:post, "#{omnitrade_url}#{orders_path}")
-            .with(headers: { 'Accept' => '*/*', 'User-Agent'=>'Ruby' })
+            .with(headers: { 'Accept' => '*/*', 'User-Agent' => 'Ruby' })
             .to_return(status: 42, body: '{"error":{"code":42,"message":"The tonce is invalid."}}', headers: {})
         end
 

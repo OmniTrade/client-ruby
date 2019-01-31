@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-module OmniTradeAPI 
+module OmniTradeAPI
   describe Auth do
     let(:access_key) { '123456' }
     let(:secret_key) { '655321' }

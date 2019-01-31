@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-module OmniTradeAPI 
+module OmniTradeAPI
   describe Config do
-
     describe '.get_omnitraderc' do
       let(:path) { 'spec/fixtures/config.file' }
       let(:secret_key) { 'accesskey123456' }
@@ -12,7 +13,6 @@ module OmniTradeAPI
         expect(described_class.get_omnitraderc(path)).to include(secret_key)
         expect(described_class.get_omnitraderc(path)).to include(access_key)
       end
-
     end
   end
 end

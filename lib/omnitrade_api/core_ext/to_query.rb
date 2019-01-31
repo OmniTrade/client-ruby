@@ -1,6 +1,8 @@
-unless Object.new.respond_to? :to_query and Object.new.respond_to? :to_param
+# frozen_string_literal: true
 
-  require 'cgi' unless defined?(CGI) && defined?(CGI::escape)
+unless Object.new.respond_to?(:to_query) && Object.new.respond_to?(:to_param)
+
+  require 'cgi' unless defined?(CGI) && defined?(CGI.escape)
 
   class Object
     def to_param

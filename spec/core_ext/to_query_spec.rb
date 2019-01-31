@@ -1,4 +1,6 @@
-module OmniTradeAPI 
+# frozen_string_literal: true
+
+module OmniTradeAPI
   describe Object do
     describe '#to_param' do
       it 'parses the object into a String' do
@@ -40,18 +42,15 @@ module OmniTradeAPI
   end
 
   describe Array do
-
     let(:array) { ['element0', 'element1'] }
 
     describe '#to_param' do
-
       it 'parses the array into a String joining the elements with a /' do
         expect(array.to_param).to eq('element0/element1')
       end
     end
 
     describe '#to_query(key)' do
-
       let(:key) { 'key' }
 
       it 'parses the given Array into a query String with a key' do
@@ -61,11 +60,9 @@ module OmniTradeAPI
   end
 
   describe Hash do
-
     let(:hash) { { key1: 'value1', key2: 'value2' } }
 
     describe '#to_query(key)' do
-
       let(:key) { 'key' }
 
       it 'parses the given Hash into a query String with a key' do
