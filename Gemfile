@@ -6,3 +6,4 @@ gemspec
 gem 'rspec'
 gem 'rubocop', require: false
 gem 'webmock'
+gem 'simplecov', require: false
