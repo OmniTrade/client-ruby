@@ -18,33 +18,33 @@ module OmniTradeAPI
   end
 
   describe NilClass do
-    describe 'to_param' do
-      it 'returns itself as a string' do
-        expect(described_class.to_param).to eq(described_class.to_s)
-      end
+    describe '#to_param' do
+      subject { nil.to_param }
+
+      it { is_expected.to eq('') }
     end
   end
 
   describe TrueClass do
-    describe 'to_param' do
-      it 'returns itself as a string' do
-        expect(described_class.to_param).to eq(described_class.to_s)
-      end
+    describe '#to_param' do
+      subject { true.to_param }
+
+      it { is_expected.to eq('true') }
     end
   end
 
   describe FalseClass do
-    describe 'to_param' do
-      it 'returns itself as a string' do
-        expect(described_class.to_param).to eq(described_class.to_s)
-      end
+    describe '#to_param' do
+      subject { false.to_param }
+
+      it { is_expected.to eq('false') }
     end
   end
 
   describe Array do
-    let(:array) { ['element0', 'element1'] }
-
     describe '#to_param' do
+      let(:array) {%w(element0 element1)}
+
       it 'parses the array into a String joining the elements with a /' do
         expect(array.to_param).to eq('element0/element1')
       end
@@ -53,8 +53,18 @@ module OmniTradeAPI
     describe '#to_query(key)' do
       let(:key) { 'key' }
 
-      it 'parses the given Array into a query String with a key' do
-        expect(array.to_query(key)).to eq('key%5B%5D=element0&key%5B%5D=element1')
+      subject { array.to_query(key) }
+
+      context 'When array is empty' do
+        let(:array) { [] }
+
+        it { is_expected.to eq("key%5B%5D=") }
+      end
+
+      context 'When array is not empty' do
+        let(:array) {%w(element0 element1)}
+
+        it { is_expected.to eq('key%5B%5D=element0&key%5B%5D=element1') }
       end
     end
   end
