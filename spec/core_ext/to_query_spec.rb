@@ -21,7 +21,7 @@ module OmniTradeAPI
     describe '#to_param' do
       subject { nil.to_param }
 
-      it { is_expected.to eq('') }
+      it { is_expected.to be_nil }
     end
   end
 
@@ -29,7 +29,7 @@ module OmniTradeAPI
     describe '#to_param' do
       subject { true.to_param }
 
-      it { is_expected.to eq('true') }
+      it { is_expected.to be(true) }
     end
   end
 
@@ -37,7 +37,7 @@ module OmniTradeAPI
     describe '#to_param' do
       subject { false.to_param }
 
-      it { is_expected.to eq('false') }
+      it { is_expected.to be(false) }
     end
   end
 

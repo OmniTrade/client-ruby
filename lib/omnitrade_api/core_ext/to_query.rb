@@ -14,6 +14,24 @@ unless Object.new.respond_to?(:to_query) && Object.new.respond_to?(:to_param)
     end
   end
 
+  class NilClass
+    def to_param
+      self
+    end
+  end
+
+  class TrueClass
+    def to_param
+      self
+    end
+  end
+
+  class FalseClass
+    def to_param
+      self
+    end
+  end
+
   class Array
     def to_param
       collect(&:to_param).join '/'
