@@ -73,7 +73,7 @@ private_client.get '/api/v2/orders', market: 'btcbrl'
 Use **`.post`** to make a POST request to an URL, you can also set the required arguments, as the following example:
 
 ```ruby
-private_client.post '/api/v2/order', market: 'btcbrl', side: 'buy', volume: '0.42', price: '4200.0'
+private_client.post '/api/v2/orders', market: 'btcbrl', side: 'buy', volume: '0.42', price: '4200.0'
 ```
 
 ## Licence
